@@ -6,7 +6,7 @@ rng('default')
 
 samplingRate = 5; 
 % For saving
-fullPathSave = createResultsFolder(['results/brownianMotion',num2str(samplingRate)]);
+fullPathSave = createResultsFolder(['results/brownianMotion_',num2str(samplingRate)]);
 
 % Fluorophore
 par.shotNoise = 1;
@@ -28,7 +28,7 @@ nDiffusionPoints = 11; % (including 0)
 diffusionConstant = (linspace(0,maxRMSD/4,nDiffusionPoints)*2).^2;
 
 % Amount of simulations
-nSimulations = 1;
+nSimulations = 1000;
 
 %% Run simulations
 % Create arrays for storing results 
@@ -83,4 +83,4 @@ end
 RMSD = sqrt(4*diffusionConstant)';
 saveAsDat(fullPathSave, 'brownianMotionTest_precision', [RMSD, precision], {'RMSD','x','y','d'})
 saveAsDat(fullPathSave, 'brownianMotionTest_accuracy', [RMSD, accuracy], {'RMSD','x','y','d'})
-save([fullPathSave,'data_brownianMotionTest.mat'], 'data')
+save(fullfile(fullPathSave,'data_brownianMotionTest.mat'), 'data')

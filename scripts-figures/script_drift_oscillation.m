@@ -9,7 +9,7 @@ rng('default')
 samplingRate = 5; 
 
 % For saving
-fullPathSave = createResultsFolder(['results/oscillation',num2str(samplingRate)]);
+fullPathSave = createResultsFolder(['results/oscillation_',num2str(samplingRate)]);
 
 % Fluorophore
 par.shotNoise = 1;
@@ -32,7 +32,7 @@ amplitude = linspace(0,maxAmplitude,nAmplitudePoints);
 frequency = 10; % amount of oscillations in one frame 
 
 % Amount of simulations
-nSimulations = 1;
+nSimulations = 1000;
 
 
 %% Run simulations
@@ -83,4 +83,4 @@ end
 %% Save results
 saveAsDat(fullPathSave, 'oscillationTest_precision', [amplitude', precision], {'amplitude','x','y','d'})
 saveAsDat(fullPathSave, 'oscillationTest_accuracy', [amplitude', accuracy], {'amplitude','x','y','d'})
-save([fullPathSave, 'data_oscillationTest.mat'], 'data')
+save(fullfile(fullPathSave, 'data_oscillationTest.mat'), 'data')

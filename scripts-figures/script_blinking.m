@@ -29,7 +29,7 @@ nPoints = 8;
 Time = linspace(5,motionSteps,nPoints);
 
 % Amount of simulations
-nSimulations = 1;
+nSimulations = 1000;
 
 
 %% Run simulations
@@ -81,5 +81,5 @@ end
 %% Save results
 saveAsDat(fullPathSave, 'blinkingTest_precision', [Time', precision], {'Time','x','y','d'})
 saveAsDat(fullPathSave, 'blinkingTest_accuracy', [Time', accuracy], {'Time','x','y','d'})
-save([fullPathSave,'data_blinkingTest.mat'], 'data')
+save(fullfile(fullPathSave,'data_blinkingTest.mat'), 'data')
 

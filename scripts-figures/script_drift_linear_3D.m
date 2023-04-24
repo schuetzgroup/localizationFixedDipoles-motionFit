@@ -8,7 +8,7 @@ rng('default')
 % sampling rate
 samplingRate = 5; 
 % For saving
-fullPathSave = createResultsFolder(['results/linearDrift',num2str(samplingRate)]);
+fullPathSave = createResultsFolder(['results/linearDrift3D_',num2str(samplingRate)]);
 
 % Fluorophore
 par.shotNoise = 1;
@@ -33,7 +33,7 @@ nAxialDriftPoints = 11; % (including 0)
 amplitude = linspace(0,10,nAxialDriftPoints);
 
 % Amount of simulations
-nSimulations = 1;
+nSimulations = 1000;
 
 
 %% Run simulations
@@ -94,5 +94,4 @@ end
 %% Save results
 saveAsDat(fullPathSave, 'linearDriftTest_precision', [amplitude', precision], {'speed','x','y','d'})
 saveAsDat(fullPathSave, 'linearDriftTest_accuracy', [amplitude', accuracy], {'speed','x','y','d'})
-save([fullPathSave,'data_linearDrift.mat'], 'data')
-
+save(fullfile(fullPathSave,'data_linearDrift.mat'), 'data')

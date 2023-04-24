@@ -8,7 +8,7 @@ rng('default')
 samplingRate = 5; 
 
 % For saving
-fullPathSave = createResultsFolder(['results/noisyFiducialTest',num2str(samplingRate)]);
+fullPathSave = createResultsFolder(['results/noisyFiducialTest_',num2str(samplingRate)]);
 
 
 % Fluorophore
@@ -30,7 +30,7 @@ motionSteps = 25; % amount of motion steps
 maxNoiseLevel = 20; %10; 
 noiseStep = 2; 
 
-nSimulations = 1; % amount of simulations
+nSimulations = 1000; % amount of simulations
 
 
 % localization accuracy
@@ -87,5 +87,5 @@ end
 noiselevels = (0:maxNoiseLevel/noiseStep)';
 saveAsDat(fullPathSave, 'noisyFiducialTest_precision', [noiselevels, precision], {'noiselevel','x','y','d'})
 saveAsDat(fullPathSave, 'noisyFiducialTest_accuracy', [noiselevels, accuracy], {'noiselevel','x','y','d'})
-save([fullPathSave,'data_noisyFiducial.mat'], 'data')
+save(fullfile(fullPathSave,'data_noisyFiducial.mat'), 'data')
 

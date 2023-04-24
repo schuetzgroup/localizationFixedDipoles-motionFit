@@ -1,7 +1,7 @@
 function saveAsDat(pathSave,filename,dataMatrix,columnNames)
 
 format = sprintf('%s\n',repmat(' %u',1,size(dataMatrix,2)));
-file = fopen([pathSave,'\',filename,'.dat'],'wt');
+file = fopen(fullfile(pathSave,[filename,'.dat']),'wt');
 
 if nargin == 4
     % Check column number

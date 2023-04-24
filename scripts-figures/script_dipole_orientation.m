@@ -10,7 +10,7 @@ inclination = pi/3; % dipole inclination angle
 par.shotNoise = 1;
 
 % For saving
-fullPathSave = createResultsFolder(['results/orientationTest',num2str(inclination)]);
+fullPathSave = createResultsFolder(['results/orientationTest_',num2str(inclination)]);
 
 
 % Microscope setup
@@ -31,7 +31,7 @@ direction = 0;
 speed = linspace(0,maxSpeed,nSpeedPoints);
 
 % Amount of simulations
-nSimulations = 1;
+nSimulations = 1000;
 
 
 %% Run simulations
@@ -85,4 +85,4 @@ end
 %% Save results
 saveAsDat(fullPathSave, 'linearDriftTest_precision', [speed', precision], {'speed','x','y','d'})
 saveAsDat(fullPathSave, 'linearDriftTest_accuracy', [speed', accuracy], {'speed','x','y','d'})
-save([fullPathSave,'data_linearDrift.mat'], 'data')
+save(fullfile(fullPathSave,'data_linearDrift.mat'), 'data')

@@ -8,7 +8,7 @@ rng('default')
 %% Specify Parameters
 
 % For saving
-fullPathSave = createResultsFolder(['results/fiducialFrameRate', num2str(speed)]);
+fullPathSave = createResultsFolder(['results/fiducialFrameRate_', num2str(speed)]);
 
 % Fluorophore
 par.shotNoise = 1;
@@ -28,7 +28,7 @@ FiducialSamplingPoints = [1;2;4;5;10;20;25];
 
 nFiducialSamplingPoints = length(FiducialSamplingPoints);
 % Amount of simulations
-nSimulations = 1;
+nSimulations = 1000;
 
 
 %% Run simulations
@@ -87,5 +87,5 @@ end
 
 saveAsDat(fullPathSave, 'fiducialFrameRateTest_precision', [FiducialSamplingPoints, precision], {'Sampling','x','y','d'})
 saveAsDat(fullPathSave, 'fiducialFrameRateTest_accuracy', [FiducialSamplingPoints, accuracy], {'Sampling','x','y','d'})
-save([fullPathSave,'data_fiducialFrameRateTest.mat'], 'data')
+save(fullfile(fullPathSave,'data_fiducialFrameRateTest.mat'), 'data')
 
