@@ -6,7 +6,7 @@ rng('default')
 
 %% Specify Parameters
 % sampling rate
-samplingRate = 5; 
+samplingRate = 25; 
 % For saving
 fullPathSave = createResultsFolder(['results/linearDrift3D_',num2str(samplingRate)]);
 

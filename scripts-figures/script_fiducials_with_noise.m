@@ -5,7 +5,7 @@ rng('default')
 
 %% Specify Parameters
 
-samplingRate = 5; 
+samplingRate = 25; 
 
 % For saving
 fullPathSave = createResultsFolder(['results/noisyFiducialTest_',num2str(samplingRate)]);
