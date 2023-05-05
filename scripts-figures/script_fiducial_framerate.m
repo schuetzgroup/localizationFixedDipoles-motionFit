@@ -1,8 +1,6 @@
 %% Stage Drift Brownian Motion
 % Calculates precision for various diffusion constants
 
-speed = 100; 
-
 rng('default')
 
 %% Specify Parameters
@@ -20,15 +18,15 @@ par.astigmatism = 0.11;
 par.nPixels = 17;
 par.backgroundNoise = 100;
 
-% Stage drift
-resolutionFactor = 20;
-direction = 0; 
+% Stage drift (Brownian motion) 
+RMSD = 100; 
 
+resolutionFactor = 20;
 FiducialSamplingPoints = [1;2;4;5;10;20;25]; 
 
 nFiducialSamplingPoints = length(FiducialSamplingPoints);
 % Amount of simulations
-nSimulations = 1000;
+nSimulations = 2000;
 
 
 %% Run simulations
@@ -52,7 +50,7 @@ for fiducialIndex = 1:nFiducialSamplingPoints
 
         %% Create PSF
         % Generate high resolution motion
-        parSimulation.stageDrift = LinearDrift(speed/(motionSteps*resolutionFactor),direction,motionSteps*resolutionFactor,'nm');
+        parSimulation.stageDrift = BrownianMotion((RMSD/2).^2/(motionSteps*resolutionFactor),motionSteps*resolutionFactor,'nm');
 
         % Generate random dipole orientation, position and defocus
         parFluorophore = createRandomFluorophore();
