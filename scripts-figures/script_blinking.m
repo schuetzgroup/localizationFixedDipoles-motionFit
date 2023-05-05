@@ -25,8 +25,8 @@ motionSteps = 25; % amount of motion steps
 speed = 200; 
 direction = 0; 
 
-nPoints = 8;
-Time = linspace(5,motionSteps,nPoints);
+nPoints = 5;
+Time = linspace(20,100,nPoints);
 
 % Amount of simulations
 nSimulations = 1000;
