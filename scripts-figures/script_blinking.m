@@ -51,7 +51,7 @@ for blinkIndex = 1:nPoints
         parFit.stageDrift = parSimulation.stageDrift.reduceSamplingRate(motionSteps); 
 
         % cut off simulation stage drift after some point 
-        parSimulation.stageDrift = parSimulation.stageDrift.cutOff(resolutionFactor*Time(blinkIndex)); 
+        parSimulation.stageDrift = parSimulation.stageDrift.cutOff(resolutionFactor*Time(blinkIndex)*motionSteps/100); 
 
         % Generate random dipole orientation, position and defocus
         parFluorophore = createRandomFluorophore();

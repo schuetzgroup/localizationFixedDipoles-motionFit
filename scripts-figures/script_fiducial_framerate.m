@@ -4,9 +4,10 @@
 rng('default')
 
 %% Specify Parameters
+RMSD = 100; 
 
 % For saving
-fullPathSave = createResultsFolder(['results/fiducialFrameRate_', num2str(speed)]);
+fullPathSave = createResultsFolder(['results/fiducialFrameRate_', num2str(RMSD)]);
 
 % Fluorophore
 par.shotNoise = 1;
@@ -19,8 +20,6 @@ par.nPixels = 17;
 par.backgroundNoise = 100;
 
 % Stage drift (Brownian motion) 
-RMSD = 100; 
-
 resolutionFactor = 20;
 FiducialSamplingPoints = [1;2;4;5;10;20;25]; 
 
