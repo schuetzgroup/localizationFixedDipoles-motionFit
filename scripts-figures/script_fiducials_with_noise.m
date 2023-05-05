@@ -21,16 +21,17 @@ par.astigmatism = 0.11;
 par.nPixels = 17;
 par.backgroundNoise = 100; 
 
-speed = 400; % diffusion constant in nm^2/frame 
+% Stage drift 
+speed = 400; 
 direction = 0;  
 
 resolutionFactor = 20;
 motionSteps = 25; % amount of motion steps 
 
-maxNoiseLevel = 20; %10; 
-noiseStep = 2; 
+maxNoiseLevel = 5; % maximum total localization precision 
+noiseStep = 0.5; 
 
-nSimulations = 1000; % amount of simulations
+nSimulations = 2000; % amount of simulations
 
 
 % localization accuracy
@@ -65,7 +66,7 @@ for noiselevel = 0:noiseStep:maxNoiseLevel
 
         %% Fit PSF
         parFit.stageDrift = parSimulation.stageDrift.reduceSamplingRate(samplingRate);
-        parFit.stageDrift = parFit.stageDrift.addNoise(sqrt(samplingRate));
+        parFit.stageDrift = parFit.stageDrift.addNoise(noiselevel*sqrt(samplingRate));
 
         % Create angle and background noise estimates
         withNoise = 1;
