@@ -39,10 +39,12 @@ accuracy = zeros(maxNoiseLevel/noiseStep+1,3);
 precision = zeros(maxNoiseLevel/noiseStep+1,3);
 % errors for each individual simulation
 data = zeros(nSimulations,3,maxNoiseLevel/noiseStep+1);
+index = 0;
 
 for noiselevel = 0:noiseStep:maxNoiseLevel 
     estimates = zeros(nSimulations,3);
-    
+    index = index + 1; 
+
     for k=1:nSimulations
         fprintf('Run %d...\n', k)
 
@@ -77,9 +79,9 @@ for noiselevel = 0:noiseStep:maxNoiseLevel
         estimates(k,:) = [est.estimatesPositionDefocus.ML] - [pos(1) pos(2) parSimulation.defocus.inNanometer];
     end
 
-    precision(speedIndex,:) = std(estimates);
-    accuracy(speedIndex,:) = mean(estimates);
-    data(:,:,speedIndex) = estimates; 
+    precision(index,:) = std(estimates);
+    accuracy(index,:) = mean(estimates);
+    data(:,:,index) = estimates; 
 end
 
 %% Save results
