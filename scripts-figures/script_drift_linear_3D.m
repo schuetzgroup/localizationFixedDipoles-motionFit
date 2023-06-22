@@ -30,7 +30,7 @@ speed = 200;
 
 
 nAxialDriftPoints = 11; % (including 0)
-amplitude = linspace(0,10,nAxialDriftPoints);
+axialSpeed = linspace(0,400,nAxialDriftPoints);
 
 % Amount of simulations
 nSimulations = 1000;
@@ -45,7 +45,7 @@ precision = zeros(nAxialDriftPoints,3);
 % errors for each individual simulation
 data = zeros(nSimulations,3,nAxialDriftPoints);
 
-for amplitudeIndex = 1:nAxialDriftPoints
+for speedIndex = 1:nAxialDriftPoints
     estimates = zeros(nSimulations,3);
     for k=1:nSimulations
         fprintf('Run %d...\n', k)
@@ -56,7 +56,7 @@ for amplitudeIndex = 1:nAxialDriftPoints
         lateralDrift = LinearDrift(speed/(motionSteps*resolutionFactor),direction,motionSteps*resolutionFactor,'nm');
 
         % generate axial oscillation (in nanometer) 
-        axialDrift = Length(amplitude(amplitudeIndex)*sin(linspace(0, 10*pi, motionSteps*resolutionFactor))', 'nm'); 
+        axialDrift = Length(axialSpeed(speedIndex)*(linspace(0, 1, motionSteps*resolutionFactor))', 'nm'); 
 
 
         parSimulation.stageDrift = StageDrift(Length([lateralDrift.motion.inNanometer, axialDrift.inNanometer],'nm')); 
@@ -85,9 +85,9 @@ for amplitudeIndex = 1:nAxialDriftPoints
         estimates(k,:) = [est.estimatesPositionDefocus.ML] - [pos(1) pos(2) parSimulation.defocus.inNanometer];
     end
 
-    precision(amplitudeIndex,:) = std(estimates);
-    accuracy(amplitudeIndex,:) = mean(estimates);
-    data(:,:,amplitudeIndex) = estimates; 
+    precision(speedIndex,:) = std(estimates);
+    accuracy(speedIndex,:) = mean(estimates);
+    data(:,:,speedIndex) = estimates; 
 end
 
 
